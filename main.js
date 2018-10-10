@@ -1,13 +1,16 @@
-// DOM Elements
-let nrInput = document.getElementById('nrInput');
-
-
-
 // Listening to events
+let numInput = document.querySelector ('#numInput'); 
+let factOutput = document.querySelector ('#factOutput');
 
-document.getElementById("nrInput").addEventListener("click", displayDate);
-
-function displayDate() {
-    document.getElementById("result").innerHTML = Date();
+const getFact = () => {
+	let number = numInput.value;
+		if (number != '' )
+			axios.get('http://numbersapi.com/' + number)
+		.then(response => {
+			factOutput.innerText = response.data;
+		})
+		.catch(error => {
+			console.log(error);
+		})
 }
-
+numInput.addEventListener('input', getFact);
